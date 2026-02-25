@@ -4,3 +4,5 @@ audios/
 output/
 __pycache__/
 *.pyc
+.env
+
