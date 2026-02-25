@@ -1,139 +1,282 @@
-# YouTube Mashup Generator
+# 🎵 YouTube Mashup Generator
 
-**Name:** Manav  
-**Roll No:** 102303990  
+> **Create custom audio mashups from YouTube videos with a single click!**
 
-This project implements a complete Mashup system consisting of:
+<div align="center">
 
-- Command Line Mashup Program
-- Web Service Mashup Generator with Email Delivery
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-2.0+-green?style=flat-square&logo=flask)](https://flask.palletsprojects.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
-Live Website:  
-https://mashup-xwsv.onrender.com/
+[🌐 Live Demo](#live-demo) • [📖 Documentation](#documentation) • [🚀 Quick Start](#quick-start) • [⚙️ Setup](#setup)
 
-The system downloads multiple YouTube songs of a given singer, extracts audio, trims them, merges them into a single mashup file, and delivers the final output.
-
----
-
-## Program 1 – Command Line Mashup
-
-**File:** `102303990.py`
-
-### Features
-- Downloads N videos of a given singer from YouTube
-- Converts videos to MP3 audio
-- Cuts first Y seconds from each audio
-- Merges all trimmed audios into one final mashup file
-- Validates user inputs
-- Handles exceptions properly
-
-### Usage
-
-### Input Constraints
-- NumberOfVideos ≥ 10
-- AudioDuration ≥ 20 seconds
-- Output file must end with `.mp3`
-- Correct number of parameters required
-
-If invalid input is provided, appropriate error messages are displayed.
-
-### Required Packages
-
-
-FFmpeg must be installed for audio conversion.
+</div>
 
 ---
 
-## Program 2 – Web Service Mashup Generator
+## 📋 Overview
 
-**File:** `app.py`  
-**Frontend:** `templates/index.html`
+A comprehensive mashup generation system that downloads multiple YouTube songs from your favorite artist, extracts audio, trims segments, and merges them into a single cohesive mashup file. Available as both a **Command-Line Tool** and a **Web Application** with email delivery.
 
-Built using Flask and deployed on Render.
-
-Production URL:  
-https://mashup-xwsv.onrender.com/
-
-### Features
-User inputs:
-- Singer Name
-- Number of Videos
-- Duration (seconds)
-- Email ID
-
-System capabilities:
-- Validates integer inputs and email format
-- Generates mashup
-- Creates ZIP file
-- Sends ZIP file via email
-- Allows direct download from browser
+**Project By:** Manav | **Roll No:** 102303990
 
 ---
 
-## Running Locally
+## ✨ Features
 
-### Install Dependencies
+### 🖥️ **Command-Line Tool** (`102303990.py`)
+- ⬇️ Download N videos from YouTube automatically
+- 🎵 Convert video files to MP3 format
+- ✂️ Trim first X seconds from each audio file
+- 🔗 Merge all trimmed segments into single file
+- ✅ Input validation with helpful error messages
+- 🛡️ Robust exception handling
 
-
-### Install FFmpeg
-https://ffmpeg.org/download.html
-
-Verify installation:
-
----
-
-## Email Configuration
-
-Create a `.env` file in the project root:
-
-
-For Gmail, use an **App Password**.
-
----
-
-## Run Web Application
-
-
-Server runs at: http://127.0.0.1:5000
-
+### 🌐 **Web Application** (`app.py`)
+- 🎯 User-friendly web interface
+- 📧 Automated email delivery with ZIP attachment
+- 💾 Direct browser download option
+- 🔐 Email validation and input sanitization
+- ⚡ Concurrent processing with unique job IDs
+- 📦 Automatic cleanup of temporary files
 
 ---
 
-## Processing Flow
+## 🎯 How It Works
 
-1. Download videos
-2. Convert to MP3
-3. Cut first Y seconds
-4. Merge into single mashup
-5. Create ZIP file
-6. Send email
-7. Provide download link
-
----
-
-## Technologies Used
-
-- Python
-- Flask
-- yt-dlp
-- pydub
-- SMTP
-- FFmpeg
-- Render (Cloud Deployment)
+```
+YouTube Videos
+     ⬇️
+Download & Extract Audio
+     ⬇️
+Convert to MP3 Format
+     ⬇️
+Trim First X Seconds
+     ⬇️
+Merge All Segments
+     ⬇️
+Create ZIP Package
+     ⬇️
+Send via Email / Download
+```
 
 ---
 
-## Notes
+## 🚀 Quick Start
 
-- CLI minimum videos: 10
-- Web minimum videos: 2
-- Minimum duration: 20 seconds
-- Internet connection required
-- FFmpeg required for audio processing
+### Prerequisites
+- Python 3.8 or higher
+- FFmpeg installed on system
+- Internet connection
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/manav-bhullar/mashup-main.git
+cd mashup-main
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Install FFmpeg
+# macOS
+brew install ffmpeg
+
+# Ubuntu/Debian
+sudo apt-get install ffmpeg
+
+# Windows
+choco install ffmpeg
+```
+
+### 1️⃣ Command-Line Usage
+
+```bash
+python 102303990.py <SingerName> <NumberOfVideos> <Duration> <OutputFile>
+```
+
+**Example:**
+```bash
+python 102303990.py "Arijit Singh" 15 30 arijit_mashup.mp3
+```
+
+**Input Constraints:**
+| Parameter | Minimum | Format |
+|-----------|---------|--------|
+| Number of Videos | 10 | Integer |
+| Duration (seconds) | 20 | Integer |
+| Output File | - | Must end with `.mp3` |
+
+**Error Handling:**
+- Invalid parameter count → Usage instructions
+- Non-integer videos/duration → Error message
+- File constraints violated → Validation error
+- Download failures → Exception handling with rollback
 
 ---
 
-## Author
+### 2️⃣ Web Application Setup
+
+#### Configuration
+
+Create a `.env` file in project root:
+
+```env
+SENDER_EMAIL=your-email@gmail.com
+SENDER_PASSWORD=your-app-password
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+PORT=5000
+```
+
+**📌 Gmail Setup:**
+1. Enable 2-Factor Authentication
+2. Generate [App Password](https://myaccount.google.com/apppasswords)
+3. Use App Password (not your actual Gmail password)
+
+#### Run Web Server
+
+```bash
+python app.py
+```
+
+**Access at:** `http://localhost:5000`
+
+**For Production:**
+```bash
+python app.py  # Server runs on port from .env or default 5000
+```
+
+---
+
+## 📂 Project Structure
+
+```
+mashup-main/
+├── 102303990.py           # CLI mashup generator
+├── app.py                  # Flask web application
+├── requirements.txt        # Python dependencies
+├── Procfile               # Render deployment config
+├── .env                   # Environment variables (create this)
+├── README.md              # This file
+└── templates/
+    ├── index.html         # Web form
+    └── result.html        # Results page
+```
+
+---
+
+## 🔧 Technology Stack
+
+| Component | Technology |
+|-----------|-----------|
+| **Backend** | Python 3.8+ |
+| **Web Framework** | Flask 2.0+ |
+| **Video Download** | yt-dlp |
+| **Audio Processing** | pydub, FFmpeg |
+| **Email Service** | SMTP |
+| **Cloud Hosting** | Render |
+
+---
+
+## 📊 Web Application Workflow
+
+```
+User Input (Singer, Videos, Duration, Email)
+         ⬇️
+Input Validation
+         ⬇️
+Create Unique Job ID
+         ⬇️
+Download Videos from YouTube
+         ⬇️
+Convert to MP3
+         ⬇️
+Cut Audio Segments
+         ⬇️
+Merge into Single File
+         ⬇️
+Create ZIP Package
+         ⬇️
+Send Email + Return Download Link
+         ⬇️
+Cleanup Temporary Files
+```
+
+---
+
+## 🌐 Live Demo
+
+**Production URL:** https://mashup-xwsv.onrender.com/
+
+Try it live with your favorite artist! No installation required.
+
+---
+
+## 📦 Dependencies
+
+```
+Flask==2.3.0
+yt-dlp==2023.0.0
+pydub==0.25.1
+python-dotenv==1.0.0
+```
+
+Install all at once:
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ⚠️ Important Notes
+
+- **CLI minimum videos:** 10 (Web minimum: 2)
+- **Minimum duration:** 20 seconds
+- **Output format:** MP3 only
+- **Internet required:** For YouTube downloads
+- **FFmpeg required:** For audio processing
+- **Temp files:** Automatically cleaned after processing
+- **Processing time:** Depends on number of videos and duration
+
+---
+
+## 🐛 Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| FFmpeg not found | Install FFmpeg and add to PATH |
+| yt-dlp errors | Update: `pip install --upgrade yt-dlp` |
+| Email not sending | Check `.env` credentials and 2FA/App Password |
+| Video download fails | Check internet connection and YouTube availability |
+| Audio conversion error | Ensure FFmpeg is properly installed |
+
+---
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+---
+
+## 👨‍💻 Author
 
 **Manav**  
-**Roll No:** 102303990
+Roll No: **102303990**
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to submit issues or pull requests.
+
+---
+
+<div align="center">
+
+**Made with ❤️ by Manav**
+
+[⬆ Back to top](#-youtube-mashup-generator)
+
+</div>
